@@ -1,0 +1,159 @@
+http://localhost:4004/odata/v4/CatalogService/
+ 
+###Service metadata document - enttiies and their respective properties
+http://localhost:4004/odata/v4/CatalogService/$metadata
+ 
+###Get all the employee data in json format
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$format=json
+
+###Get data chunk by chunk
+http://localhost:36265/odata/v4/CatalogService/EmployeeSet?$skip=2&$top=3
+ 
+###Filter data
+http://localhost:36265/odata/v4/CatalogService/EmployeeSet?$filter=bankName eq 'My Bank of New York'
+ 
+### pattern based filter
+http://localhost:36265/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'Su')
+ 
+###Get the total record counts
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+ 
+###Get the records with minimal data set
+http://localhost:36265/odata/v4/CatalogService/EmployeeSet?$select=ID,nameFirst,email
+ 
+###Get Single Employee data by Key
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/087ba4f3-ac36-4a33-b3c5-5f99607a8fa1
+
+###Insert new employee in DB
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+ 
+{
+  "nameFirst": "Paul",
+  "nameMiddle": "Test",
+  "nameLast": "Carlos",
+  "nameInitials": null,
+  "sex": "M",
+  "language": "E",
+  "phoneNumber": null,
+  "email": "paul@demo.com",
+  "loginName": "CARLOSP",
+  "Currency_code": "USD",
+  "salaryAmount": 50000,
+  "accountNumber": "9988776655",
+  "bankId": "121058",
+  "bankName": "My Bank of San Francisco"
+}
+ 
+###Change employee
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/087ba4f3-ac36-4a33-b3c5-5f99607a8fa1
+Content-Type: application/json
+ 
+{
+    "salaryAmount": 100000,
+    "Currency_code": "EUR"
+}
+ 
+###Remove the employee
+DELETE http://localhost:40579/odata/v4/CatalogService/EmployeeSet/ad40c226-25a9-4935-9f2b-dfe8c075f322
+
+###Change employee
+PATCH http://localhost:40579/odata/v4/CatalogService/EmployeeSet/ad40c226-25a9-4935-9f2b-dfe8c075f322
+Content-Type: application/json
+ 
+{
+    "salaryAmount": 100000,
+    "Currency_code": "EUR"
+}
+ 
+###Remove the employee
+DELETE http://localhost:40579/odata/v4/CatalogService/EmployeeSet/ad40c226-25a9-4935-9f2b-dfe8c075f322
+
+###Get all POS
+http://localhost:4004/odata/v4/CatalogService/POs
+ 
+###Get Single PO
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2C052
+ 
+###Load dependent data for PO
+http://localhost:40579/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC36052/Items
+ 
+ 
+###Load PO and its dependent items data
+http://localhost:40579/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC36052?$expand=Items
+ 
+###Getting data from cds view entity
+http://localhost:40579/odata/v4/CatalogService/ProductCDS/74867AD200E41EDBA5D8B06B26EBC052?$expand=To_Items
+
+###Calling Boost Action
+POST http://localhost:4004/odata/v4/CatalogService/POs('74867AD200E41EDBA5D8B0C98DC2C052')/CatalogService.boost
+Content-Type: application/json
+ 
+{}
+
+###function to get largest purchase order inaspect of gross amount
+http://localhost:4004/odata/v4/CatalogService/getLargestOrder()
+###Change employee
+PATCH http://localhost:40579/odata/v4/CatalogService/EmployeeSet/2b000af4-a42d-46ac-82d9-3aee28f3a07f
+Content-Type: application/json
+ 
+{
+    "salaryAmount": 1000000,
+    "Currency_code": "EUR"
+}
+
+[17:18] Anubhav Oberoy (Unverified)
+###Read custom entity
+http://localhost:4004/odata/v4/MyService/ReadEmployeeSrv/438550b3-fc4e-4f7a-b11a-99033de35547
+ 
+
+###get total count of the data in the table
+http://localhost:4004/odata/v4/Myservice/ReadEmployeeSrv 
+###Read custom entity
+POST http://localhost:4004/odata/v4/MyService/ReadEmployeeSrv
+Content-Type: application/json
+ 
+{
+  "nameFirst": "Paul",
+  "nameMiddle": null,
+  "nameLast": "Carlos",
+  "nameInitials": null,
+  "sex": "M",
+  "language": "E",
+  "phoneNumber": null,
+  "email": "paul@demo.com",
+  "loginName": "CARLOSP",
+  "Currency_code": "USD",
+  "salaryAmount": 50000,
+  "accountNumber": "9988776655",
+  "bankId": "121000358",
+  "bankName": "My Bank of San Francisco"
+}
+
+###Get Single Employee data by Key with selected fields
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C197A7FB?$select=ID,nameFirst,email
+
+###get all Purchase Orders
+http://localhost:4004/odata/v4/CatalogService/POs
+
+###single purchase order
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2E052;
+
+###Load dependent Data for POs
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2E052/Items;
+
+###Load PO and its dependent item data
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2E052?$expand=Items
+
+
+###getting data from cds view entity
+http://localhost:4004/odata/v4/CatalogService/ProductCDS/74867AD200E41EDBA5D8B06B26EC4052
+
+
+###getting data from cds view entity and Data on Demand through Mixin 
+http://localhost:4004/odata/v4/CatalogService/ProductCDS/74867AD200E41EDBA5D8B06B26EC4052?$expand=To_Items;
+
+
+###get all employee
+http://localhost:4004/odata/v4/MyService/ReadEmployeeSrv
+

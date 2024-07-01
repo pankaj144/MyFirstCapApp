@@ -1,0 +1,27 @@
+{
+  "name": "myFirstCapApp",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/eslint-plugin-cds": "^3",
+    "@sap/ux-specification": "^1.120.13",
+    "eslint": "^9"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-purchaseorderapp": "cds watch --open purchaseorderapp/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-purchase_order_v2": "cds watch --open purchase_order_v2/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/purchaseorderapp",
+    "app/purchase_order_v2"
+  ]
+}
