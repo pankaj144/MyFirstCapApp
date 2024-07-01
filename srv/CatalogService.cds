@@ -31,6 +31,7 @@ service CatalogService @(path:'CatalogService') {
             $Type : 'Common.SideEffectsType',
             TargetProperties : [
                 'in/GROSS_AMOUNT',
+                'in/OverallStatus'
             ],
         }, }
         action boost();
