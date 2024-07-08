@@ -1,15 +1,19 @@
 using { anubhav.db.master, anubhav.db.transaction } from '../db/datamodel';
 using { cappo.cds } from '../db/CDSViews';
  
-service CatalogService @(path:'CatalogService') {
+service CatalogService @(path:'CatalogService', requires:
+'authenticated-user') {
  
-    entity EmployeeSet as projection on master.employees;
+    entity EmployeeSet @(restrict: [
+                        { grant: ['READ'], to: 'Viewer', where: 'bankName = $user.BankName' },
+                        { grant: ['WRITE'], to: 'Admin' }
+                        ]) as projection on master.employees;
     
     entity AddressSet as projection on master.address;
     entity BusinessPartnerSet as projection on master.businesspartner;
     entity ProductSet as projection on master.product;
 
-    entity POs @(odata.draft.enabled: true) as projection on transaction.purchaseorder{
+    entity POs @(odata.draft.enabled: true, restrict: [ { grant: ['WRITE'], to:'Admin'} ]) as projection on transaction.purchaseorder{
         *,
         Items,
         case OVERALL_STATUS

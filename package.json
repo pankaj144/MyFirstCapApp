@@ -6,9 +6,11 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@cap-js/postgres": "^1.8.0",
     "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
     "express": "^4",
-    "@sap/cds-hana": "^2"
+    "@sap/xssec": "^3"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
@@ -27,7 +29,8 @@
   ],
   "cds": {
     "requires": {
-      "db": "hana"
+      "db": "hana",
+      "auth": "xsuaa"
     }
   }
 }
