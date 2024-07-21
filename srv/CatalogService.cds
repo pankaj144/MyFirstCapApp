@@ -13,7 +13,12 @@ service CatalogService @(path:'CatalogService', requires:
     entity BusinessPartnerSet as projection on master.businesspartner;
     entity ProductSet as projection on master.product;
 
-    entity POs @(odata.draft.enabled: true, restrict: [ { grant: ['WRITE'], to:'Admin'} ]) as projection on transaction.purchaseorder{
+    entity POs @(
+            odata.draft.enabled: true,
+            restrict: [ 
+                { grant: ['READ'], to: 'Viewer'},
+                { grant: ['WRITE'], to:'Admin'}
+            ]) as projection on transaction.purchaseorder{
         *,
         Items,
         case OVERALL_STATUS
